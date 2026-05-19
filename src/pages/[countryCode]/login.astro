@@ -1,0 +1,21 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getRegionParams } from "@lib/params/region-params";
+import { LoginPage } from "@modules/account/components/LoginPage";
+
+export const getStaticPaths = getRegionParams;
+
+const { countryCode } = Astro.params;
+
+if (!countryCode) {
+  return Astro.redirect("/not-found");
+}
+---
+
+<Layout
+  title="Login"
+  description="Sign in to your customer account."
+  noindex
+>
+  <LoginPage client:load countryCode={countryCode} />
+</Layout>

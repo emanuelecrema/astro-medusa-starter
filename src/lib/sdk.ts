@@ -14,4 +14,7 @@ export const sdk = new Medusa({
   baseUrl: MEDUSA_BACKEND_URL,
   publishableKey: MEDUSA_PUBLISHABLE_KEY,
   debug: isDevEnvironment,
+  auth: {
+    type: "session",
+  },
 });

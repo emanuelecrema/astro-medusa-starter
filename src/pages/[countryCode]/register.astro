@@ -1,0 +1,21 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getRegionParams } from "@lib/params/region-params";
+import { RegisterPage } from "@modules/account/components/RegisterPage";
+
+export const getStaticPaths = getRegionParams;
+
+const { countryCode } = Astro.params;
+
+if (!countryCode) {
+  return Astro.redirect("/not-found");
+}
+---
+
+<Layout
+  title="Create Account"
+  description="Create your customer account to speed up checkout and track your orders."
+  noindex
+>
+  <RegisterPage client:load countryCode={countryCode} />
+</Layout>

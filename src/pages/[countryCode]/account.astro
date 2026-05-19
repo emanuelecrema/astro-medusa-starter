@@ -1,0 +1,21 @@
+---
+import Layout from "@layouts/Layout.astro";
+import { getRegionParams } from "@lib/params/region-params";
+import { AccountPage } from "@modules/account/components/AccountPage";
+
+export const getStaticPaths = getRegionParams;
+
+const { countryCode } = Astro.params;
+
+if (!countryCode) {
+  return Astro.redirect("/not-found");
+}
+---
+
+<Layout
+  title="Account"
+  description="Your account details."
+  noindex
+>
+  <AccountPage client:load countryCode={countryCode} />
+</Layout>
